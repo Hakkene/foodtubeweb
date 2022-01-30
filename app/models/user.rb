@@ -4,13 +4,16 @@ class User < ApplicationRecord
 has_secure_password
 has_secure_token
 
- has_and_belongs_to_many :ingredients, :join_table => :ingredients_users
- has_many :reviews
+has_many :stockpiles
+has_many :ingredients, through: :stockpiles
 
 def invalidate_token
     self.update_columns(token: nil)
   end
 
+def follows?(ingredient)
+  self.ingredients.include?(ingredient)
+end
 
 
 end

@@ -1,22 +1,16 @@
-<h1>Strona główna</h1>
+<h1>twoje składniki</h1>
 
-<p>
-abecadłoaaaaaaaaa
-</p>
+<% if logged_in? %>
 
-<%=Time.now%>
 
 <ul>
-<% @users.each do |user| %>
-  <li><%= user.id %> </li>
+<% current_user.ingredients.each do |test| %> 
+  <li><%= test.name %> </li>
 <% end %>
 </ul>
-<p>
-becea
-</p>
 
-<%= @user.nickname %>
 
-<%= @ingredient.name %>
+<% end %>
+
 
 

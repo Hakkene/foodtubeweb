@@ -2,7 +2,9 @@ class Ingredient < ApplicationRecord
       validates :name, presence: true, uniqueness: true
 
       
-      has_and_belongs_to_many :users, :join_table => :ingredients_users
+      
+has_many :stockpiles
+has_many :users, through: :stockpiles
 
 
 

@@ -1,10 +1,25 @@
 class IngredientsController < ApplicationController
-  before_action :set_ingredient, only: %i[ show edit update destroy ]
-
+  before_action :set_ingredient, only: %i[ show edit update destroy follow unfollow ]
+  
   # GET /ingredients or /ingredients.json
   def index
     @ingredients = Ingredient.all
   end
+
+
+def follow
+  unless current_user.follows?(@ingredient)
+    current_user.ingredients.append(@ingredient)
+  end
+  redirect_to @ingredient
+end
+
+def unfollow
+  if current_user.follows?(@ingredient)
+    @ingredient.users.delete(current_user)
+  end
+  redirect_to @ingredient
+end
 
   # GET /ingredients/1 or /ingredients/1.json
   def show

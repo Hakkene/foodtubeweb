@@ -5,5 +5,20 @@
   <%= @ingredient.name %>
 </p>
 
+
+<% if logged_in? %>
+<% unless current_user.follows?(@ingredient) %>
+ <%= link_to("Dodaj składnik do spiżarni", action: :follow) %>
+  <% else %>
+  <%= link_to("usuń składnik ze spiżarni", action: :unfollow) %>
+  <% end %>  
+<% end %>
+
+
+
+
+
+
+
 <%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
 <%= link_to 'Back', ingredients_path %>
